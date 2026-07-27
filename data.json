@@ -1,0 +1,127 @@
+{
+  "projects": [
+    {
+      "title": "PharmEx",
+      "subtitle": "Pharmacy Inventory & Expiry Management System",
+      "role": "Team Lead",
+      "badge": "Desktop Application",
+      "stack": ["HTML", "CSS", "JavaScript", "Electron", "Node.js", "Express.js", "MySQL"],
+      "points": [
+        "Led team building a desktop pharmacy inventory & expiry system",
+        "Implemented inventory tracking, billing, and supplier management",
+        "Owned project planning and technical documentation"
+      ],
+      "status": "active",
+      "github": "https://github.com/HunterOvi",
+      "demo": ""
+    },
+    {
+      "title": "CampusConnect",
+      "subtitle": "Student Service Portal",
+      "role": "Systems Architect",
+      "badge": "System Design",
+      "stack": ["HTML", "CSS", "JavaScript", "MySQL", "System Analysis & Design"],
+      "points": [
+        "Designed architecture for a centralized student service portal",
+        "Authored the SRS, UML diagrams, and functional requirements",
+        "Mapped notice, fee payment, and document request modules"
+      ],
+      "status": "active",
+      "github": "https://github.com/HunterOvi",
+      "demo": ""
+    },
+    {
+      "title": "Employee Management System",
+      "subtitle": "Console-based Records Application",
+      "role": "Developer",
+      "badge": "Console Application",
+      "stack": ["C", "File Handling", "Structures"],
+      "points": [
+        "Built a console app for employee records with full CRUD operations",
+        "Added advanced search and reporting features",
+        "Used C file handling for secure, persistent storage"
+      ],
+      "status": "complete",
+      "github": "https://github.com/HunterOvi",
+      "demo": ""
+    },
+    {
+      "title": "Smart Car Parking System",
+      "subtitle": "Automated Hardware Parking Solution",
+      "role": "Developer",
+      "badge": "Embedded System",
+      "stack": ["Arduino Uno", "C++", "IR Sensors", "Servo Motor", "LCD"],
+      "points": [
+        "Engineered an automated parking system using Arduino",
+        "Programmed vehicle detection and automatic gate control",
+        "Integrated IR sensors, servo gate, and LCD status display"
+      ],
+      "status": "complete",
+      "github": "https://github.com/HunterOvi",
+      "demo": ""
+    }
+  ],
+
+  "skillGroups": [
+    {
+      "label": "Programming Languages",
+      "items": ["Java", "JavaScript", "C"]
+    },
+    {
+      "label": "Web Technologies",
+      "items": ["HTML5", "CSS3", "JSON"]
+    },
+    {
+      "label": "Tools & Database",
+      "items": ["MySQL", "GitHub", "VS Code", "Vercel", "Arduino"]
+    }
+  ],
+
+  "education": [
+    {
+      "type": "degree",
+      "title": "B.Sc. in Software Engineering",
+      "place": "Daffodil International University",
+      "date": "2028",
+      "dateLabel": "Expected Graduation • 2028",
+      "detail": ["Current Semester: 6th", "Member, Data Science Club"]
+    },
+    {
+      "type": "degree",
+      "title": "HSC (Science)",
+      "place": "Milestone College",
+      "date": "2023",
+      "dateLabel": "Graduated • 2023",
+      "detail": []
+    },
+    {
+      "type": "degree",
+      "title": "SSC (Science)",
+      "place": "Dakshin Bhag High School",
+      "date": "2021",
+      "dateLabel": "Graduated • 2021",
+      "detail": []
+    }
+  ],
+
+  "news": [
+    {
+      "date": "2026-07-25",
+      "title": "Started PharmEx Development",
+      "body": "Started developing PharmEx, a pharmacy inventory and billing desktop application, serving as Team Lead.",
+      "tag": "project"
+    },
+    {
+      "date": "2026-05-01",
+      "title": "CampusConnect Completed",
+      "body": "Completed the analysis, Software Requirements Specification (SRS), UML diagrams, and system design for the CampusConnect Student Service Portal.",
+      "tag": "project"
+    },
+    {
+      "date": "2026-03-01",
+      "title": "Java OOP Certificate Earned",
+      "body": "Completed the Programming Hero Java Object-Oriented Programming certification.",
+      "tag": "certification"
+    }
+  ]
+}

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Md. Mehedi Hasan Ovi — Software Engineer</title>
+<meta name="description" content="Portfolio of Md. Mehedi Hasan Ovi, Software Engineering student at DIU building full-stack systems and embedded hardware." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Blueprint grid backdrop -->
+<div class="grid-backdrop" aria-hidden="true"></div>
+
+<!-- Circuit rail navigation (desktop) -->
+<nav class="rail" aria-label="Section navigation">
+  <svg class="rail-line" viewBox="0 0 2 100" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="railLineFade" gradientUnits="userSpaceOnUse" x1="1" y1="0" x2="1" y2="100">
+        <stop offset="0%" style="stop-color:var(--panel-border-strong)" stop-opacity="0"/>
+        <stop offset="6%" style="stop-color:var(--panel-border-strong)" stop-opacity="1"/>
+        <stop offset="94%" style="stop-color:var(--panel-border-strong)" stop-opacity="1"/>
+        <stop offset="100%" style="stop-color:var(--panel-border-strong)" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <line x1="1" y1="0" x2="1" y2="100" stroke="url(#railLineFade)"/>
+  </svg>
+  <ul>
+    <li><a href="#hero" data-label="Home"><span class="node"></span></a></li>
+    <li><a href="#about" data-label="About"><span class="node"></span></a></li>
+    <li><a href="#projects" data-label="Projects"><span class="node"></span></a></li>
+    <li><a href="#skills" data-label="Stack"><span class="node"></span></a></li>
+    <li><a href="#education" data-label="Education"><span class="node"></span></a></li>
+    <li><a href="#news" data-label="Updates"><span class="node"></span></a></li>
+    <li><a href="#contact" data-label="Connect"><span class="node"></span></a></li>
+  </ul>
+</nav>
+
+<!-- Mobile top bar -->
+<header class="mobile-bar">
+  <span class="mobile-bar-name">OVI</span>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hero">Home</a>
+  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
+  <a href="#skills">Stack</a>
+  <a href="#education">Education</a>
+  <a href="#news">Updates</a>
+  <a href="#contact">Connect</a>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero" class="section hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          <span class="hero-line">Md. Mehedi</span>
+          <span class="hero-line">Hasan</span>
+          <span class="hero-line hero-accent">Ovi</span>
+        </h1>
+        <p class="hero-terminal mono" id="typedLine"></p>
+        <p class="hero-sub">Passionate about building modern web, desktop, and embedded software while continuously learning and growing as a software engineer.</p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6a2 2 0 0 1 2-2h3.5a2 2 0 0 1 1.6.8l1 1.4a2 2 0 0 0 1.6.8H19a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z"/><circle cx="12" cy="13" r="1.6"/><circle cx="17" cy="17" r="1.6"/><path d="M12 14.6V17a1 1 0 0 0 1 1h2.4"/></svg>View Projects</a>
+          <a href="Md_Mehedi_Hasan_Ovi_Resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>View Resume</a>
+        </div>
+      </div>
+      <div class="hero-portrait">
+        <div class="portrait-frame">
+          <svg class="portrait-hex" viewBox="0 0 220 240" aria-hidden="true">
+            <polygon points="110,4 210,62 210,178 110,236 10,178 10,62" />
+          </svg>
+          <img src="photo-hero.jpg" alt="Portrait of Md. Mehedi Hasan Ovi" class="portrait-img">
+          <div class="portrait-ring"></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue mono" aria-hidden="true">scroll ↓</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="section-head">
+      <span class="tag mono">01 · about</span>
+      <h2>About Me</h2>
+    </div>
+    <div class="glass-panel about-panel">
+      <div class="about-grid">
+        <div class="about-content reveal">
+          <p>I'm a <strong>B.Sc. Software Engineering student at Daffodil International University</strong> with a passion for building modern software solutions. I enjoy developing <strong>web applications, desktop software, and embedded systems</strong> while continuously learning and improving my technical skills.</p>
+          <p>From system analysis and UML design to development, databases, and embedded systems, I enjoy working across the <strong>entire software development lifecycle</strong>. My goal is to create <strong>reliable, user-focused applications</strong> that solve real-world problems.</p>
+          <div class="competency-row">
+            <span class="chip">Problem Solving</span>
+            <span class="chip">Teamwork</span>
+            <span class="chip">Leadership</span>
+            <span class="chip">Adaptability</span>
+          </div>
+        </div>
+
+        <aside class="status-panel reveal">
+          <p class="tag mono status-panel-label">profile overview</p>
+          <ul class="status-list">
+            <li class="status-row">
+              <svg class="status-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 2 9l10 5 10-5-10-5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 10v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              <div class="status-text">
+                <span class="status-key mono">Degree</span>
+                <span class="status-value">B.Sc. in Software Engineering</span>
+              </div>
+            </li>
+            <li class="status-row">
+              <svg class="status-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1M9 16h1M14 16h1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              <div class="status-text">
+                <span class="status-key mono">University</span>
+                <span class="status-value">Daffodil International University</span>
+              </div>
+            </li>
+            <li class="status-row">
+              <svg class="status-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 9.5h17M8 3v3.5M16 3v3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              <div class="status-text">
+                <span class="status-key mono">Semester</span>
+                <span class="status-value">6th Semester</span>
+              </div>
+            </li>
+            <li class="status-row">
+              <svg class="status-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.4 7-11.5A7 7 0 0 0 5 9.5C5 14.6 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.3" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+              <div class="status-text">
+                <span class="status-key mono">Location</span>
+                <span class="status-value">Dhaka, Bangladesh</span>
+              </div>
+            </li>
+            <li class="status-row">
+              <svg class="status-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M3 13h18" stroke="currentColor" stroke-width="1.7"/></svg>
+              <div class="status-text">
+                <span class="status-key mono">Current Project</span>
+                <span class="status-value">Team Lead • PharmEx</span>
+              </div>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="section-head">
+      <span class="tag mono">02 · projects</span>
+      <h2>Featured Projects</h2>
+      <p class="section-sub">A selection of software engineering projects showcasing full-stack development, desktop applications, embedded systems, and system design.</p>
+      <p class="section-note mono">Note: These projects were developed through university coursework, team collaboration, and personal learning.</p>
+    </div>
+    <div class="project-grid" id="projectGrid"></div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="section-head">
+      <span class="tag mono">03 · stack</span>
+      <h2>Tech Stack</h2>
+    </div>
+    <div class="skills-board" id="skillsBoard"></div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section">
+    <div class="section-head">
+      <span class="tag mono">04 · education</span>
+      <h2>Education</h2>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <!-- LATEST UPDATES -->
+  <section id="news" class="section">
+    <div class="section-head">
+      <span class="tag mono">05 · updates</span>
+      <h2>Latest Updates</h2>
+    </div>
+    <div class="news-feed" id="newsFeed"></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section contact-section">
+    <div class="section-head">
+      <span class="tag mono">06 · connect</span>
+      <h2>Get in touch</h2>
+    </div>
+    <div class="glass-panel contact-panel">
+      <p>Currently seeking software engineering internship opportunities. Feel free to reach out for collaborations, projects, or professional discussions.</p>
+      <ul class="availability-row">
+        <li><span class="check-icon" aria-hidden="true">✓</span> Internship</li>
+        <li><span class="check-icon" aria-hidden="true">✓</span> Collaboration</li>
+        <li><span class="check-icon" aria-hidden="true">✓</span> Freelance</li>
+      </ul>
+      <div class="contact-grid">
+        <a class="contact-item" href="mailto:ovi.mehedihasan@gmail.com">
+          <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <span class="contact-text">
+            <span class="contact-label mono">Email</span>
+            <span class="contact-value">ovi.mehedihasan@gmail.com</span>
+          </span>
+        </a>
+        <a class="contact-item" href="tel:+8801516523375">
+          <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span>
+          <span class="contact-text">
+            <span class="contact-label mono">Phone</span>
+            <span class="contact-value">+880 1516‑523375</span>
+          </span>
+        </a>
+        <a class="contact-item contact-item-link" href="https://linkedin.com/in/mehediovi2003" target="_blank" rel="noopener">
+          <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 10.5v6M7.5 7.8v.01"/><path d="M11.5 16.5v-3.5c0-1.4 1-2.2 2.2-2.2 1.2 0 2.3.8 2.3 2.2v3.5"/></svg></span>
+          <span class="contact-text">
+            <span class="contact-label mono">LinkedIn</span>
+            <span class="contact-value">linkedin.com/in/mehediovi2003</span>
+          </span>
+          <span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="contact-item contact-item-link" href="https://github.com/HunterOvi" target="_blank" rel="noopener">
+          <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.2-4-2-6-2m12 4v-3.2c0-.8.3-1.5.8-2-2.9-.3-5.8-1.4-5.8-6.4A5 5 0 0 1 11.3 5.7 4.7 4.7 0 0 1 12 2.5a4.7 4.7 0 0 1 3 1.6 5 5 0 0 1 1.5 3.5c0 5-2.9 6.1-5.8 6.4.5.5.9 1.4.9 2.7V21"/></svg></span>
+          <span class="contact-text">
+            <span class="contact-label mono">GitHub</span>
+            <span class="contact-value">github.com/HunterOvi</span>
+          </span>
+          <span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="contact-item contact-item-link" href="https://www.facebook.com/mehediovi.2003" target="_blank" rel="noopener">
+          <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M15 4.3h-1.6a3 3 0 0 0-3 3V10H8.3v3h2.1v7h3v-7h2.3l.4-3h-2.7V7.7c0-.6.4-1 1-1H15Z" fill="currentColor" stroke="none"/></svg></span>
+          <span class="contact-text">
+            <span class="contact-label mono">Facebook</span>
+            <span class="contact-value">facebook.com/mehediovi.2003</span>
+          </span>
+          <span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+        <div class="contact-item contact-item-static">
+          <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span class="contact-text">
+            <span class="contact-label mono">Location</span>
+            <span class="contact-value">Dhaka, Bangladesh</span>
+          </span>
+        </div>
+      </div>
+      <div class="contact-cta">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ovi.mehedihasan@gmail.com" target="_blank" rel="noopener" class="btn btn-primary"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Send Email</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p class="footer-copyright">© 2026 Md. Mehedi Hasan Ovi. All rights reserved.</p>
+  </footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
