@@ -112,52 +112,70 @@ a:focus-visible, button:focus-visible {
 
 /* ============================================================
    CIRCUIT RAIL NAVIGATION (desktop)
+
+   Layout logic (everything derives from the two custom properties
+   below — nothing is hardcoded per item, so adding or removing
+   <li> entries needs no manual repositioning):
+
+   - .rail is vertically centered as one block via top:50% /
+     translateY(-50%), sized entirely by its own content.
+   - .rail ul is a flex column; equal spacing between every item
+     comes from `gap`, not from stretching a fixed-height box.
+   - The connecting line is a ::before on the list itself, offset
+     top/bottom by exactly half an item's height — that always
+     lands it dead-center on the first (HOME) and last (CONNECT)
+     dot, however many items exist.
    ============================================================ */
 .rail {
   position: fixed;
   left: 34px;
-  top: 0;
-  height: 100vh;
+  top: 50%;
   width: 40px;
+  transform: translateY(-50%);
   z-index: 50;
-  display: flex;
-  align-items: center;
-}
-
-.rail-line {
-  position: absolute;
-  left: 50%;
-  top: 6%;
-  height: 88%;
-  width: 2px;
-  transform: translateX(-50%);
-  overflow: visible;
-}
-.rail-line line {
-  stroke-width: 2;
-  vector-effect: non-scaling-stroke;
 }
 
 .rail ul {
+  --rail-item-height: 28px;
+  --rail-gap: 48px;
   list-style: none;
   margin: 0;
   padding: 0;
   position: relative;
   width: 100%;
-  height: 88%;
-  top: 6%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: var(--rail-gap);
+}
+
+/* Timeline line: spans from the center of the first dot to the
+   center of the last dot, no matter how tall the list ends up. */
+.rail ul::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: calc(var(--rail-item-height) / 2);
+  bottom: calc(var(--rail-item-height) / 2);
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    var(--panel-border-strong) 24px,
+    var(--panel-border-strong) calc(100% - 24px),
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 .rail a {
   position: relative;
+  z-index: 1; /* keep dot + label above the ::before line */
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
-  height: 28px;
+  height: var(--rail-item-height);
 }
 
 .rail .node {
