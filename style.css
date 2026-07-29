@@ -137,7 +137,7 @@ a:focus-visible, button:focus-visible {
 
 .rail ul {
   --rail-item-height: 28px;
-  --rail-gap: 48px;
+  --rail-gap: 76px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -154,15 +154,15 @@ a:focus-visible, button:focus-visible {
   content: "";
   position: absolute;
   left: 50%;
-  top: calc(var(--rail-item-height) / 2);
-  bottom: calc(var(--rail-item-height) / 2);
+  top: calc(var(--rail-item-height) / 2 - 56px);
+  bottom: calc(var(--rail-item-height) / 2 - 56px);
   width: 2px;
   transform: translateX(-50%);
   background: linear-gradient(
     to bottom,
     transparent 0,
-    var(--panel-border-strong) 24px,
-    var(--panel-border-strong) calc(100% - 24px),
+    var(--panel-border-strong) 56px,
+    var(--panel-border-strong) calc(100% - 56px),
     transparent 100%
   );
   pointer-events: none;
@@ -242,7 +242,7 @@ a:focus-visible, button:focus-visible {
     align-items: center;
     position: sticky;
     top: 0;
-    z-index: 60;
+    z-index: 110;
     padding: 16px 20px;
     background: rgba(10, 21, 18, 0.75);
     backdrop-filter: blur(14px);
@@ -272,37 +272,146 @@ a:focus-visible, button:focus-visible {
   left: 0;
   width: 100%;
   height: 2px;
+  border-radius: 2px;
   background: var(--text-hi);
-  transition: all 0.3s var(--ease);
+  transition: transform 0.35s var(--ease), opacity 0.25s var(--ease), background-color 0.35s var(--ease);
 }
 .mobile-menu-btn span:nth-child(1) { top: 0; }
 .mobile-menu-btn span:nth-child(2) { top: 9px; }
 .mobile-menu-btn span:nth-child(3) { top: 18px; }
+.mobile-menu-btn.open span { background: var(--circuit-green); }
 .mobile-menu-btn.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
 .mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
 .mobile-menu-btn.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-.mobile-menu {
-  display: none;
-  flex-direction: column;
-  position: sticky;
-  top: 53px;
-  z-index: 59;
-  background: rgba(10, 21, 18, 0.95);
+/* Dark transparent scrim behind the drawer — page stays visible but
+   shouldn't compete with the menu, so it's blurred and a bit darker. */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  background: rgba(6, 13, 11, 0.62);
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--panel-border);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ease), visibility 0s linear 0.3s;
 }
-.mobile-menu.open { display: flex; }
-.mobile-menu a {
-  padding: 14px 22px;
+.mobile-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s var(--ease), visibility 0s linear 0s;
+}
+
+/* Left slide-out drawer — flush to the screen edge, floating away from the
+   other three sides so it reads as a card rather than a full panel. */
+.mobile-drawer {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 18px;
+  bottom: 18px;
+  left: 0;
+  width: 80vw;
+  max-width: 340px;
+  z-index: 100;
+  border-radius: 0 30px 30px 0;
+  background: rgba(12, 24, 20, 0.7);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(143, 208, 160, 0.22);
+  border-left: none;
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.05) inset,
+    0 24px 60px -20px rgba(0,0,0,0.55),
+    0 0 44px -20px rgba(143, 208, 160, 0.2);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-100%);
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease), visibility 0s linear 0.3s;
+}
+.mobile-drawer.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease), visibility 0s linear 0s;
+}
+
+.mobile-drawer-nav {
+  list-style: none;
+  margin: 0;
+  padding: 26px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  overflow-y: auto;
+  flex: 1;
+}
+.mobile-drawer-nav a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  padding: 0 16px 0 22px;
+  border-radius: 12px;
   font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 0.02em;
   color: var(--text-mid);
-  border-bottom: 1px solid var(--panel-border);
+  opacity: 0;
+  transform: translateX(-14px);
+  transition: color 0.25s var(--ease), background-color 0.25s var(--ease),
+    opacity 0.32s var(--ease), transform 0.32s var(--ease);
 }
-.mobile-menu a:active { color: var(--circuit-green); }
+.mobile-drawer.open .mobile-drawer-nav a {
+  opacity: 1;
+  transform: translateX(0);
+}
+/* Stagger as the drawer slides in */
+.mobile-drawer.open .mobile-drawer-nav li:nth-child(1) a { transition-delay: 0.08s; }
+.mobile-drawer.open .mobile-drawer-nav li:nth-child(2) a { transition-delay: 0.12s; }
+.mobile-drawer.open .mobile-drawer-nav li:nth-child(3) a { transition-delay: 0.16s; }
+.mobile-drawer.open .mobile-drawer-nav li:nth-child(4) a { transition-delay: 0.2s; }
+.mobile-drawer.open .mobile-drawer-nav li:nth-child(5) a { transition-delay: 0.24s; }
+.mobile-drawer.open .mobile-drawer-nav li:nth-child(6) a { transition-delay: 0.28s; }
+.mobile-drawer.open .mobile-drawer-nav li:nth-child(7) a { transition-delay: 0.32s; }
+
+.mobile-drawer-nav a:hover,
+.mobile-drawer-nav a:active {
+  color: var(--text-hi);
+  background: rgba(143, 208, 160, 0.06);
+  transform: translateX(3px);
+}
+
+/* Active section: glowing bar + brighter text — no heavy fill */
+.mobile-drawer-indicator {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  width: 3px;
+  height: 20px;
+  border-radius: 3px;
+  background: var(--circuit-green);
+  box-shadow: 0 0 8px 1px rgba(143, 208, 160, 0.55);
+  opacity: 0;
+  transform: translateY(-50%) scaleY(0.3);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.mobile-drawer-nav a.active {
+  color: var(--text-hi);
+}
+.mobile-drawer-nav a.active .mobile-drawer-indicator {
+  opacity: 1;
+  transform: translateY(-50%) scaleY(1);
+  animation: railNodeGlow 2.4s ease-in-out infinite;
+}
+
+/* Lock page scroll behind the open drawer */
+body.menu-open {
+  overflow: hidden;
+}
 
 /* ============================================================
    LAYOUT
@@ -558,6 +667,49 @@ main {
 @keyframes floatCue {
   0%, 100% { transform: translateY(0); opacity: 0.6; }
   50% { transform: translateY(6px); opacity: 1; }
+}
+
+/* ------------------------------------------------------------
+   MOBILE HERO REFINEMENTS (≤800px)
+   Tightens vertical rhythm and trims the portrait so the first
+   screen feels balanced instead of stretched by leftover
+   min-height:100vh whitespace. Desktop rules above are untouched.
+   ------------------------------------------------------------ */
+@media (max-width: 800px) {
+  .hero {
+    min-height: 0;
+    padding-top: 36px;
+    padding-bottom: 28px;
+  }
+  .hero-inner { gap: 26px; }
+
+  /* Hexagon portrait ~12% smaller on mobile */
+  .portrait-frame { width: min(320px, 60vw); }
+
+  .hero-title { margin-bottom: 14px; }
+  .hero-terminal { margin-bottom: 14px; }
+  .hero-sub { margin-bottom: 0.7em; }
+  .hero-cta { margin-top: 18px; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(2.15rem, 9.5vw, 2.6rem); }
+  .hero-terminal {
+    font-size: 13px;
+    line-height: 1.55;
+    min-height: 40px; /* reserves space for the longest line wrapping to 2 lines, avoids layout jump */
+  }
+  .hero-sub { font-size: 14.5px; }
+}
+
+/* CTA buttons: trim padding first; stack full-width only on very
+   small screens where two pill buttons would otherwise feel cramped. */
+@media (max-width: 800px) {
+  .btn { padding: 13px 20px; }
+}
+@media (max-width: 420px) {
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .btn { width: 100%; }
 }
 
 /* ============================================================

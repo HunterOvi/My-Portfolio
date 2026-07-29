@@ -291,7 +291,7 @@ function initScrollReveal() {
    ============================================================ */
 function initRail() {
   var sections = document.querySelectorAll('main .section');
-  var links = document.querySelectorAll('.rail a');
+  var links = document.querySelectorAll('.rail a, .mobile-drawer-nav a');
   if (!sections.length || !links.length) return;
 
   var sectionIds = [];
@@ -311,9 +311,9 @@ function initRail() {
     for (var j = 0; j < links.length; j++) {
       links[j].classList.remove('active');
     }
-    var activeLink = document.querySelector('.rail a[href="#' + sectionIds[currentIndex] + '"]');
-    if (activeLink) {
-      activeLink.classList.add('active');
+    var activeLinks = document.querySelectorAll('.rail a[href="#' + sectionIds[currentIndex] + '"], .mobile-drawer-nav a[href="#' + sectionIds[currentIndex] + '"]');
+    for (var k = 0; k < activeLinks.length; k++) {
+      activeLinks[k].classList.add('active');
     }
   }
 
@@ -322,27 +322,70 @@ function initRail() {
 }
 
 /* ============================================================
-   MOBILE MENU
+   MOBILE NAV DRAWER
    ============================================================ */
 function initMobileMenu() {
   var btn = document.getElementById('mobileMenuBtn');
   var menu = document.getElementById('mobileMenu');
-  if (!btn || !menu) return;
+  var overlay = document.getElementById('mobileOverlay');
+  var closeBtn = document.getElementById('mobileMenuClose');
+  if (!btn || !menu || !overlay) return;
 
-  btn.addEventListener('click', function () {
-    var open = menu.classList.toggle('open');
+  function setOpen(open) {
+    menu.classList.toggle('open', open);
+    overlay.classList.toggle('open', open);
     btn.classList.toggle('open', open);
     btn.setAttribute('aria-expanded', open);
+    menu.setAttribute('aria-hidden', !open);
+    document.body.classList.toggle('menu-open', open);
+  }
+
+  btn.addEventListener('click', function () {
+    setOpen(!menu.classList.contains('open'));
   });
 
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function () {
+      setOpen(false);
+    });
+  }
+
+  // Close when a nav link is tapped (link navigation + smooth scroll still happens natively)
   var links = menu.querySelectorAll('a');
   for (var i = 0; i < links.length; i++) {
     links[i].addEventListener('click', function () {
-      menu.classList.remove('open');
-      btn.classList.remove('open');
-      btn.setAttribute('aria-expanded', false);
+      setOpen(false);
     });
   }
+
+  // Close when tapping the dark overlay outside the drawer
+  overlay.addEventListener('click', function () {
+    setOpen(false);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.classList.contains('open')) {
+      setOpen(false);
+    }
+  });
+
+  // Swipe-left to close
+  var touchStartX = 0;
+  var touchStartY = 0;
+  menu.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  menu.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    var dy = e.changedTouches[0].clientY - touchStartY;
+    // mostly-horizontal leftward swipe of at least 50px
+    if (dx < -50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      setOpen(false);
+    }
+  }, { passive: true });
 }
 
 /* ============================================================

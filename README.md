@@ -1,4 +1,4 @@
-# Md. Mehedi Hasan Ovi — Portfolio
+# Mehedi Hasan Ovi — Portfolio
 
 A personal portfolio website built with plain **HTML, CSS, JavaScript, and JSON** — no frameworks, no build tools, no npm install. Just open it and it runs.
 
@@ -78,7 +78,7 @@ This is a static site, so it can be deployed anywhere that serves static files �
 
 ## Author
 
-**Md. Mehedi Hasan Ovi**
+**Mehedi Hasan Ovi**
 B.Sc. in Software Engineering, Daffodil International University
 
 - GitHub: [github.com/HunterOvi](https://github.com/HunterOvi)
@@ -86,4 +86,4 @@ B.Sc. in Software Engineering, Daffodil International University
 
 ## License
 
-© 2026 Md. Mehedi Hasan Ovi. All rights reserved.
+© 2026 Mehedi Hasan Ovi. All rights reserved.

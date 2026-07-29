@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Md. Mehedi Hasan Ovi — Software Engineer</title>
-<meta name="description" content="Portfolio of Md. Mehedi Hasan Ovi, Software Engineering student at DIU building full-stack systems and embedded hardware." />
+<title>Mehedi Hasan Ovi — Software Engineer</title>
+<meta name="description" content="Portfolio of Mehedi Hasan Ovi, Software Engineering student at DIU building full-stack systems and embedded hardware." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -30,20 +30,27 @@
 
 <!-- Mobile top bar -->
 <header class="mobile-bar">
-  <span class="mobile-bar-name">OVI</span>
   <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
+  <span class="mobile-bar-name">OVI</span>
 </header>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#hero">Home</a>
-  <a href="#about">About</a>
-  <a href="#projects">Projects</a>
-  <a href="#skills">Stack</a>
-  <a href="#education">Education</a>
-  <a href="#news">Updates</a>
-  <a href="#contact">Connect</a>
-</div>
+
+<!-- Dark overlay behind the drawer — page stays visible underneath -->
+<div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+
+<!-- Left slide-out navigation drawer -->
+<nav class="mobile-drawer" id="mobileMenu" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Section navigation">
+  <ul class="mobile-drawer-nav">
+    <li><a href="#hero" data-label="Home"><span class="mobile-drawer-indicator" aria-hidden="true"></span>Home</a></li>
+    <li><a href="#about" data-label="About"><span class="mobile-drawer-indicator" aria-hidden="true"></span>About</a></li>
+    <li><a href="#projects" data-label="Projects"><span class="mobile-drawer-indicator" aria-hidden="true"></span>Projects</a></li>
+    <li><a href="#skills" data-label="Stack"><span class="mobile-drawer-indicator" aria-hidden="true"></span>Stack</a></li>
+    <li><a href="#education" data-label="Education"><span class="mobile-drawer-indicator" aria-hidden="true"></span>Education</a></li>
+    <li><a href="#news" data-label="Updates"><span class="mobile-drawer-indicator" aria-hidden="true"></span>Updates</a></li>
+    <li><a href="#contact" data-label="Connect"><span class="mobile-drawer-indicator" aria-hidden="true"></span>Contact</a></li>
+  </ul>
+</nav>
 
 <main>
 
@@ -52,15 +59,14 @@
     <div class="hero-inner">
       <div class="hero-text">
         <h1 class="hero-title">
-          <span class="hero-line">Md. Mehedi</span>
-          <span class="hero-line">Hasan</span>
+          <span class="hero-line">Mehedi Hasan</span>
           <span class="hero-line hero-accent">Ovi</span>
         </h1>
         <p class="hero-terminal mono" id="typedLine"></p>
         <p class="hero-sub">Passionate about building modern web, desktop, and embedded software while continuously learning and growing as a software engineer.</p>
         <div class="hero-cta">
-          <a href="#projects" class="btn btn-primary"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6a2 2 0 0 1 2-2h3.5a2 2 0 0 1 1.6.8l1 1.4a2 2 0 0 0 1.6.8H19a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z"/><circle cx="12" cy="13" r="1.6"/><circle cx="17" cy="17" r="1.6"/><path d="M12 14.6V17a1 1 0 0 0 1 1h2.4"/></svg>View Projects</a>
-          <a href="Md_Mehedi_Hasan_Ovi_Resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>View Resume</a>
+          <a href="#contact" class="btn btn-primary"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Get In Touch</a>
+          <a href="Md_Mehedi_Hasan_Ovi_Resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>Resume</a>
         </div>
       </div>
       <div class="hero-portrait">
@@ -68,7 +74,7 @@
           <svg class="portrait-hex" viewBox="0 0 220 240" aria-hidden="true">
             <polygon points="110,4 210,62 210,178 110,236 10,178 10,62" />
           </svg>
-          <img src="photo-hero.jpg" alt="Portrait of Md. Mehedi Hasan Ovi" class="portrait-img">
+          <img src="photo-hero.jpg" alt="Portrait of Mehedi Hasan Ovi" class="portrait-img">
           <div class="portrait-ring"></div>
         </div>
       </div>
@@ -244,7 +250,7 @@
   </section>
 
   <footer class="footer">
-    <p class="footer-copyright">© 2026 Md. Mehedi Hasan Ovi. All rights reserved.</p>
+    <p class="footer-copyright">© 2026 Mehedi Hasan Ovi. All rights reserved.</p>
   </footer>
 
 </main>
