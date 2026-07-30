@@ -67,7 +67,7 @@
     "intro": "I'm currently seeking Software Engineering Internship opportunities. Whether you have an exciting project, internship opportunity, or simply want to connect, I'd be happy to hear from you.",
     "ctaLabel": "Contact Me",
     "items": [
-      { "icon": "mail", "label": "Email", "value": "ovi.mehedihasan@gmail.com", "href": "mailto:ovi.mehedihasan@gmail.com" },
+      { "icon": "mail", "label": "Email", "value": "ovi.mehedihasan10@gmail.com", "href": "mailto:ovi.mehedihasan10@gmail.com" },
       { "icon": "phone", "label": "Phone", "value": "+880 1516‑523375", "href": "tel:+8801516523375" },
       { "icon": "linkedin", "label": "LinkedIn", "value": "@mehediovi2003", "href": "https://linkedin.com/in/mehediovi2003", "external": true },
       { "icon": "github", "label": "GitHub", "value": "@HunterOvi", "href": "https://github.com/HunterOvi", "external": true },
