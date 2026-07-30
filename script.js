@@ -9,6 +9,26 @@
 var siteData = null;
 
 /* ============================================================
+   CLEAN URL: strip any "#section" fragment from the address bar
+   on load (e.g. a shared link like site.com/#projects) so the
+   visible URL always stays https://mehedihasanovi.site/ while
+   still landing on the right section via the id below.
+   Runs immediately (script is parsed at the end of <body>, before
+   the browser's own load-time hash-scroll), not inside
+   DOMContentLoaded, so the fragment never lingers in the URL bar.
+   ============================================================ */
+(function stripInitialHash() {
+  if (window.location.hash) {
+    var targetId = window.location.hash.slice(1);
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+    var target = document.getElementById(targetId);
+    if (target) {
+      target.scrollIntoView({ block: 'start' });
+    }
+  }
+})();
+
+/* ============================================================
    SMALL MONOCHROME ICONS
    Used next to skills and tech badges.
    Kept as plain strings so they are easy to read and edit.
@@ -496,8 +516,35 @@ function initRail() {
 }
 
 /* ============================================================
+   SECTION NAV LINKS (rail + mobile drawer)
+   Intercepts clicks on the "#section" links rendered by renderNav()
+   and scrolls to the target manually instead of letting the browser
+   navigate to the hash, so the address bar always stays clean at
+   https://mehedihasanovi.site/ instead of picking up "#projects" etc.
+   ============================================================ */
+function initNavLinks() {
+  var links = document.querySelectorAll('.rail a[href^="#"], .mobile-drawer-nav a[href^="#"]');
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', function (e) {
+      // Let ctrl/cmd/middle-click open a new tab as usual
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+
+      var targetId = this.getAttribute('href').slice(1);
+      var target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      closeMobileMenu();
+    });
+  }
+}
+
+/* ============================================================
    MOBILE NAV DRAWER
    ============================================================ */
+var closeMobileMenu = function () {}; // replaced with the real closer once initMobileMenu runs
+
 function initMobileMenu() {
   var btn = document.getElementById('mobileMenuBtn');
   var menu = document.getElementById('mobileMenu');
@@ -512,18 +559,11 @@ function initMobileMenu() {
     menu.setAttribute('aria-hidden', !open);
     document.body.classList.toggle('menu-open', open);
   }
+  closeMobileMenu = function () { setOpen(false); };
 
   btn.addEventListener('click', function () {
     setOpen(!menu.classList.contains('open'));
   });
-
-  // Close when a nav link is tapped (link navigation + smooth scroll still happens natively)
-  var links = menu.querySelectorAll('a');
-  for (var i = 0; i < links.length; i++) {
-    links[i].addEventListener('click', function () {
-      setOpen(false);
-    });
-  }
 
   // Close when tapping the dark overlay outside the drawer
   overlay.addEventListener('click', function () {
@@ -610,6 +650,7 @@ document.addEventListener('DOMContentLoaded', function () {
       siteData = data;
 
       renderNav();
+      initNavLinks();
       renderHero();
       renderAbout();
       renderProjects();

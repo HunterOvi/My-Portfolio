@@ -36,6 +36,7 @@ portfolio_updated/
 ├── script.js                        # Renders content from data.json + handles interactions
 ├── data.json                        # Editable content: projects, skills, education, updates
 ├── photo-hero.jpg                   # Hero section portrait
+├── og-image.jpg                     # 1200×630 preview image for social/link previews
 ├── Mehedi_Hasan_Ovi_Resume.pdf       # Résumé (linked from the "Resume" button)
 └── README.md
 ```
@@ -67,7 +68,7 @@ Every piece of page text — navigation labels, the hero section, About Me, proj
 
 A few notes:
 
-- **`site`**: the page `<title>` and meta description shown in browser tabs and link previews (these stay in `index.html`'s `<head>` too, since search engines and chat apps don't run JavaScript — keep both in sync if you change them).
+- **`site`**: the page `<title>` and meta description shown in browser tabs and link previews (these stay in `index.html`'s `<head>` too, since search engines and chat apps don't run JavaScript — keep both in sync if you change them). The `<head>` also sets `rel="canonical"` and the Open Graph/Twitter tags to `https://mehedihasanovi.site/` and `og-image.jpg` — update those too if the domain or preview image ever changes.
 - **`nav`**: the section links in the side rail and mobile menu. Each entry needs an `id` matching a section's `id` in `index.html`, and a `label`.
 - **`hero`**: `firstName`/`lastName`, the typewriter `typedLines` (array), the `subtitle`, `resumeFile` (must match the PDF's filename), and the `photo` file.
 - **`about`**: `paragraphs` (array — basic `<strong>` tags are allowed), `competencies` (the small skill chips), and the `status` list (each item needs an `icon` key from `SECTION_ICONS` in `script.js`, plus `key`/`value`).
