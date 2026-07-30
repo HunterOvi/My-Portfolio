@@ -18,9 +18,9 @@
   --text-mid: #b8c4bd;
   --text-dim: #7c8b83;
 
-  --font-display: "Space Grotesk", sans-serif;
-  --font-body: "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --font-mono: "Space Mono", monospace;
 
   --radius: 18px;
   --radius-sm: 10px;
@@ -70,12 +70,12 @@ body {
   body { padding-left: var(--rail-gutter); }
 }
 
-.mono { font-family: var(--font-mono); letter-spacing: 0.01em; }
+.mono { font-family: var(--font-mono); font-weight: 700; letter-spacing: 0.02em; }
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  letter-spacing: -0.015em;
   margin: 0;
   color: var(--text-hi);
 }
@@ -209,7 +209,8 @@ a:focus-visible, button:focus-visible {
   white-space: nowrap;
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-dim);
   opacity: 0;
@@ -583,12 +584,12 @@ main {
 .btn {
   font-family: var(--font-mono);
   font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   padding: 13px 24px;
   border-radius: var(--radius-sm);
   transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease),
-    color 0.3s var(--ease), transform 0.3s var(--ease);
+    color 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -700,6 +701,26 @@ main {
     min-height: 40px; /* reserves space for the longest line wrapping to 2 lines, avoids layout jump */
   }
   .hero-sub { font-size: 14.5px; }
+}
+
+/* ------------------------------------------------------------
+   DESKTOP: keep the hero terminal line on a single row.
+   The hexagon portrait has a near-fixed minimum width, so the
+   text column only has comfortable room from ~1100px up; below
+   that the existing wrap behavior (identical to mobile) is left
+   in place rather than shrinking the font to an unreadable size.
+   A fluid font-size + ellipsis fallback absorb any remaining
+   width differences across desktop sizes without ever wrapping.
+   Mobile rules above (≤800px) are completely untouched.
+   ------------------------------------------------------------ */
+@media (min-width: 1100px) {
+  .hero-text { max-width: 680px; }
+  .hero-terminal {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: clamp(12.5px, 1vw, 14px);
+  }
 }
 
 /* CTA buttons: trim padding first; stack full-width only on very
@@ -943,22 +964,39 @@ main {
 }
 
 .skill-group {
+  display: flex;
+  flex-direction: column;
   background: var(--panel-glass);
   border: 1px solid var(--panel-border);
   border-radius: var(--radius);
   padding: 24px;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  transition: transform 0.5s var(--ease), border-color 0.5s var(--ease);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 .skill-group.reveal {
-  transition: opacity 0.8s var(--ease), transform 0.5s var(--ease), border-color 0.5s var(--ease);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
+.skill-group.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.skill-group.reveal:nth-child(1) { transition-delay: 0ms; }
+.skill-group.reveal:nth-child(2) { transition-delay: 120ms; }
+.skill-group.reveal:nth-child(3) { transition-delay: 240ms; }
 .skill-group:hover,
 .skill-group.reveal:hover {
   transform: translateY(-3px);
-  border-color: rgba(143, 208, 160, 0.35);
-  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease);
+  border-color: rgba(143, 208, 160, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22), 0 0 24px rgba(143, 208, 160, 0.14);
+  transition: transform 0.28s var(--ease), border-color 0.28s var(--ease), box-shadow 0.28s var(--ease);
+}
+.skill-group:hover .skill-icon,
+.skill-group.reveal:hover .skill-icon {
+  transform: scale(1.09);
 }
 
 .skill-group-label {
@@ -981,8 +1019,12 @@ main {
   font-size: 14px;
   color: var(--text-mid);
   line-height: 1;
+  transition: color 0.25s var(--ease);
 }
 .skill-item:first-of-type { border-top: none; }
+.skill-item:hover {
+  color: var(--text-hi);
+}
 .skill-icon {
   display: flex;
   align-items: center;
@@ -994,6 +1036,17 @@ main {
   color: var(--circuit-green);
   background: rgba(143, 208, 160, 0.08);
   border: 1px solid var(--panel-border);
+  transition: transform 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.skill-item:hover .skill-icon {
+  color: var(--copper-bright);
+  border-color: rgba(143, 208, 160, 0.35);
+}
+
+@media (max-width: 700px) {
+  .skills-board {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ============================================================
@@ -1090,38 +1143,13 @@ main {
   .contact-panel { padding: 22px; }
 }
 
-.contact-panel > p { max-width: 62ch; }
-
-.availability-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 22px;
-  list-style: none;
-  margin: 16px 0 0;
-  padding: 0;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text-mid);
-}
-.availability-row li { display: flex; align-items: center; gap: 8px; }
-.check-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  font-size: 11px;
-  color: var(--circuit-green);
-  border: 1px solid rgba(143, 208, 160, 0.4);
-  background: rgba(143, 208, 160, 0.08);
-}
+.contact-panel > p { max-width: 62ch; margin-bottom: 0; }
 
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 14px;
-  margin-top: 20px;
+  margin-top: 22px;
 }
 @media (max-width: 550px) {
   .contact-grid { grid-template-columns: 1fr; }
@@ -1130,21 +1158,24 @@ main {
 .contact-item {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
+  min-height: 66px;
   padding: 13px 16px;
   border: 1px solid var(--panel-border);
   border-radius: var(--radius-sm);
+  background: var(--panel-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   position: relative;
-  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease), background 0.3s var(--ease);
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 .contact-item:hover {
   border-color: var(--circuit-green);
   transform: translateY(-2px);
-  background: rgba(143, 208, 160, 0.04);
+  background: rgba(143, 208, 160, 0.05);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.2), 0 0 20px rgba(143, 208, 160, 0.14);
 }
-.contact-item-link { cursor: pointer; }
-.contact-item-static { cursor: default; }
-.contact-item-static:hover { transform: none; }
+.contact-item-link { cursor: pointer; padding-right: 36px; }
 
 .contact-icon {
   display: flex;
@@ -1157,12 +1188,14 @@ main {
   color: var(--circuit-green);
   background: rgba(143, 208, 160, 0.08);
   border: 1px solid var(--panel-border);
-  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
 }
-.contact-item:hover .contact-icon { border-color: var(--circuit-green); }
+.contact-item:hover .contact-icon { border-color: var(--circuit-green); transform: scale(1.08); }
+.contact-icon svg { display: block; }
 
 .contact-text {
   display: flex;
+  flex: 1 1 0%;
   flex-direction: column;
   gap: 3px;
   min-width: 0;
@@ -1172,11 +1205,12 @@ main {
   position: absolute;
   top: 50%;
   right: 16px;
-  font-size: 13px;
+  display: flex;
+  align-items: center;
   color: var(--text-dim);
   opacity: 0;
   transform: translate(-4px, -50%);
-  transition: all 0.3s var(--ease);
+  transition: all 0.25s var(--ease);
 }
 .contact-item-link:hover .contact-arrow {
   opacity: 1;
@@ -1185,15 +1219,19 @@ main {
 }
 .contact-label {
   font-size: 10.5px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.09em;
   color: var(--text-mid);
 }
 .contact-value {
+  display: block;
   font-size: 14px;
   color: var(--text-hi);
-  overflow-wrap: anywhere;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .contact-cta {
@@ -1238,4 +1276,87 @@ main {
 .reveal.in-view {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ============================================================
+   BACK TO TOP
+   Circular glass button, bottom-right. Hidden at the top of the
+   page; fades + slides in once you've scrolled past the hero.
+   ============================================================ */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 90;
+
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: rgba(10, 21, 18, 0.55);
+  border: 1px solid rgba(143, 208, 160, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  color: var(--circuit-green);
+  cursor: pointer;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px) scale(0.94);
+  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease),
+    visibility 0s linear 0.28s, border-color 0.28s var(--ease),
+    box-shadow 0.28s var(--ease), background-color 0.28s var(--ease);
+}
+
+.back-to-top svg { transition: transform 0.28s var(--ease); }
+
+/* Revealed by JS once the page has scrolled past ~300px */
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease),
+    visibility 0s linear 0s, border-color 0.28s var(--ease),
+    box-shadow 0.28s var(--ease), background-color 0.28s var(--ease);
+  animation: backToTopBreathe 4.5s ease-in-out infinite;
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  transform: translateY(0) scale(1.08);
+  border-color: var(--circuit-green);
+  background: rgba(15, 30, 25, 0.65);
+  box-shadow: 0 0 0 1px rgba(143, 208, 160, 0.25), 0 0 26px rgba(143, 208, 160, 0.4),
+    0 8px 24px rgba(0, 0, 0, 0.35);
+  animation-play-state: paused;
+}
+.back-to-top:hover svg,
+.back-to-top:focus-visible svg {
+  transform: translateY(-3px);
+}
+.back-to-top:focus-visible { outline: 2px solid var(--circuit-green); outline-offset: 3px; }
+
+.back-to-top:active {
+  transform: translateY(0) scale(0.95);
+  transition-duration: 0.12s;
+}
+
+/* Very subtle idle "breathing" glow — paused on hover above and
+   disabled globally for prefers-reduced-motion (see top of file). */
+@keyframes backToTopBreathe {
+  0%, 100% { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 0 rgba(143, 208, 160, 0); }
+  50% { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 16px rgba(143, 208, 160, 0.28); }
+}
+
+@media (max-width: 600px) {
+  .back-to-top {
+    width: 40px;
+    height: 40px;
+    right: 18px;
+    bottom: 18px;
+  }
 }

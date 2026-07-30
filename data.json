@@ -1,4 +1,68 @@
 {
+  "site": {
+    "name": "Mehedi Hasan Ovi",
+    "shortName": "OVI",
+    "title": "Mehedi Hasan Ovi — Software Engineer",
+    "description": "Portfolio of Mehedi Hasan Ovi, Software Engineering student at DIU building full-stack systems and embedded hardware.",
+    "url": "https://mehedihasanovi.site/"
+  },
+
+  "nav": [
+    { "id": "hero", "label": "Home" },
+    { "id": "about", "label": "About" },
+    { "id": "projects", "label": "Projects" },
+    { "id": "skills", "label": "Skills" },
+    { "id": "education", "label": "Education" },
+    { "id": "news", "label": "Updates" },
+    { "id": "contact", "label": "Connect" }
+  ],
+
+  "hero": {
+    "firstName": "Mehedi Hasan",
+    "lastName": "Ovi",
+    "typedLines": [
+      "> B.Sc. in Software Engineering • Daffodil International University",
+      "> Building software that solves real-world problems.",
+      "> Team Lead • PharmEx | Pharmacy Inventory & Billing System"
+    ],
+    "subtitle": "Passionate about building modern web, desktop, and embedded software while continuously learning and growing as a software engineer.",
+    "resumeFile": "Mehedi_Hasan_Ovi_Resume.pdf",
+    "photo": "photo-hero.jpg",
+    "photoAlt": "Portrait of Mehedi Hasan Ovi"
+  },
+
+  "about": {
+    "paragraphs": [
+      "I'm a <strong>B.Sc. Software Engineering student at Daffodil International University</strong> with a passion for building modern software solutions. I enjoy developing <strong>web applications, desktop software, and embedded systems</strong> while continuously learning and improving my technical skills.",
+      "From system analysis and UML design to development, databases, and embedded systems, I enjoy working across the <strong>entire software development lifecycle</strong>. My goal is to create <strong>reliable, user-focused applications</strong> that solve real-world problems."
+    ],
+    "competencies": ["Problem Solving", "Teamwork", "Leadership", "Adaptability"],
+    "statusLabel": "profile overview",
+    "status": [
+      { "icon": "cap", "key": "Degree", "value": "B.Sc. in Software Engineering" },
+      { "icon": "building", "key": "University", "value": "Daffodil International University" },
+      { "icon": "calendar", "key": "Semester", "value": "6th Semester" },
+      { "icon": "pin", "key": "Location", "value": "Dhaka, Bangladesh" },
+      { "icon": "briefcase", "key": "Current Project", "value": "Team Lead • PharmEx" }
+    ]
+  },
+
+  "contact": {
+    "intro": "I'm currently seeking Software Engineering Internship opportunities. Whether you have an exciting project, internship opportunity, or simply want to connect, I'd be happy to hear from you.",
+    "items": [
+      { "icon": "mail", "label": "Email", "value": "ovi.mehedihasan@gmail.com", "href": "mailto:ovi.mehedihasan@gmail.com" },
+      { "icon": "phone", "label": "Phone", "value": "+880 1516‑523375", "href": "tel:+8801516523375" },
+      { "icon": "linkedin", "label": "LinkedIn", "value": "@mehediovi2003", "href": "https://linkedin.com/in/mehediovi2003", "external": true },
+      { "icon": "github", "label": "GitHub", "value": "@HunterOvi", "href": "https://github.com/HunterOvi", "external": true },
+      { "icon": "facebook", "label": "Facebook", "value": "@mehediovi.2003", "href": "https://www.facebook.com/mehediovi.2003", "external": true },
+      { "icon": "map", "label": "Location", "value": "Dhaka, Bangladesh", "href": "https://www.google.com/maps/search/?api=1&query=Dhaka%2C+Bangladesh", "external": true }
+    ]
+  },
+
+  "footer": {
+    "copyright": "© 2026 Mehedi Hasan Ovi. All rights reserved."
+  },
+
   "projects": [
     {
       "title": "PharmEx",
@@ -64,15 +128,15 @@
 
   "skillGroups": [
     {
-      "label": "Programming Languages",
+      "label": "Languages",
       "items": ["Java", "JavaScript", "C"]
     },
     {
-      "label": "Web Technologies",
-      "items": ["HTML5", "CSS3", "JSON"]
+      "label": "Frameworks & Technologies",
+      "items": ["HTML5", "CSS3", "JSON", "Node.js", "Express.js", "Electron"]
     },
     {
-      "label": "Tools & Database",
+      "label": "Tools & Platforms",
       "items": ["MySQL", "GitHub", "VS Code", "Vercel", "Arduino"]
     }
   ],
