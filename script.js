@@ -17,16 +17,18 @@ var siteData = null;
    the browser's own load-time hash-scroll), not inside
    DOMContentLoaded, so the fragment never lingers in the URL bar.
    ============================================================ */
-(function stripInitialHash() {
-  if (window.location.hash) {
-    var targetId = window.location.hash.slice(1);
-    history.replaceState(null, '', window.location.pathname + window.location.search);
-    var target = document.getElementById(targetId);
-    if (target) {
-      target.scrollIntoView({ block: 'start' });
-    }
+function removeHashFromUrl() {
+  if (!window.location.hash) return;
+
+  var targetId = window.location.hash.slice(1);
+  history.replaceState(null, '', window.location.pathname + window.location.search);
+
+  var target = document.getElementById(targetId);
+  if (target) {
+    target.scrollIntoView({ block: 'start' });
   }
-})();
+}
+removeHashFromUrl();
 
 /* ============================================================
    SMALL MONOCHROME ICONS
@@ -116,6 +118,7 @@ var EXTERNAL_ARROW = '<span class="contact-arrow" aria-hidden="true"><svg viewBo
 function renderNav() {
   var railList = document.getElementById('railNav');
   var drawerList = document.getElementById('drawerNav');
+
   if (!railList || !drawerList) return;
 
   var railHtml = '';
@@ -130,6 +133,36 @@ function renderNav() {
 }
 
 /* ============================================================
+   RENDER: SECTION HEADERS
+   Fills in the small "tag" label and the <h2> heading for every
+   section that has one, plus the extra intro text on Projects.
+   All of this text lives in siteData.sectionHeaders.
+   ============================================================ */
+function renderSectionHeaders() {
+  var headers = siteData.sectionHeaders;
+  var sectionIds = ['about', 'projects', 'skills', 'education', 'news', 'contact'];
+
+  for (var i = 0; i < sectionIds.length; i++) {
+    var id = sectionIds[i];
+    var info = headers[id];
+    if (!info) continue;
+
+    var tagEl = document.getElementById(id + 'Tag');
+    var headingEl = document.getElementById(id + 'Heading');
+    if (tagEl) tagEl.textContent = info.tag;
+    if (headingEl) headingEl.textContent = info.heading;
+  }
+
+  var projectsInfo = headers.projects;
+  if (projectsInfo) {
+    var subEl = document.getElementById('projectsSubtitle');
+    var noteEl = document.getElementById('projectsNote');
+    if (subEl) subEl.textContent = projectsInfo.subtitle;
+    if (noteEl) noteEl.textContent = projectsInfo.note;
+  }
+}
+
+/* ============================================================
    RENDER: HERO
    ============================================================ */
 function renderHero() {
@@ -139,12 +172,18 @@ function renderHero() {
   var lastEl = document.getElementById('heroLastName');
   var subEl = document.getElementById('heroSub');
   var resumeEl = document.getElementById('heroResumeLink');
+  var resumeLabelEl = document.getElementById('heroResumeLabel');
+  var ctaLabelEl = document.getElementById('heroCtaLabel');
   var photoEl = document.getElementById('heroPhoto');
+  var scrollCueEl = document.getElementById('scrollCue');
 
   if (firstEl) firstEl.textContent = h.firstName;
   if (lastEl) lastEl.textContent = h.lastName;
   if (subEl) subEl.textContent = h.subtitle;
   if (resumeEl) resumeEl.setAttribute('href', h.resumeFile);
+  if (resumeLabelEl) resumeLabelEl.textContent = h.resumeLabel;
+  if (ctaLabelEl) ctaLabelEl.textContent = h.ctaLabel;
+  if (scrollCueEl) scrollCueEl.textContent = h.scrollCue;
   if (photoEl) {
     photoEl.setAttribute('src', h.photo);
     photoEl.setAttribute('alt', h.photoAlt);
@@ -233,6 +272,9 @@ function renderContact() {
       if (c.items[j].icon === 'mail') { mailItem = c.items[j]; break; }
     }
     if (mailItem) ctaEl.setAttribute('href', mailItem.href);
+
+    var ctaLabelEl = document.getElementById('contactCtaLabel');
+    if (ctaLabelEl) ctaLabelEl.textContent = c.ctaLabel;
   }
 }
 
@@ -535,16 +577,15 @@ function initNavLinks() {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-      closeMobileMenu();
     });
   }
 }
 
 /* ============================================================
    MOBILE NAV DRAWER
+   Called after renderNav() so the nav links already exist and
+   "close on link tap" can attach to the real elements.
    ============================================================ */
-var closeMobileMenu = function () {}; // replaced with the real closer once initMobileMenu runs
-
 function initMobileMenu() {
   var btn = document.getElementById('mobileMenuBtn');
   var menu = document.getElementById('mobileMenu');
@@ -559,11 +600,18 @@ function initMobileMenu() {
     menu.setAttribute('aria-hidden', !open);
     document.body.classList.toggle('menu-open', open);
   }
-  closeMobileMenu = function () { setOpen(false); };
 
   btn.addEventListener('click', function () {
     setOpen(!menu.classList.contains('open'));
   });
+
+  // Close when a nav link inside the drawer is tapped
+  var drawerLinks = menu.querySelectorAll('a');
+  for (var i = 0; i < drawerLinks.length; i++) {
+    drawerLinks[i].addEventListener('click', function () {
+      setOpen(false);
+    });
+  }
 
   // Close when tapping the dark overlay outside the drawer
   overlay.addEventListener('click', function () {
@@ -638,7 +686,6 @@ function initBackToTop() {
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function () {
   // Interactions that don't depend on data.json
-  initMobileMenu();
   initBackToTop();
 
   // Load all page content from data.json, then render everything
@@ -650,7 +697,7 @@ document.addEventListener('DOMContentLoaded', function () {
       siteData = data;
 
       renderNav();
-      initNavLinks();
+      renderSectionHeaders();
       renderHero();
       renderAbout();
       renderProjects();
@@ -663,6 +710,8 @@ document.addEventListener('DOMContentLoaded', function () {
       initTypedLine();
       initScrollReveal();
       initRail();
+      initNavLinks();
+      initMobileMenu();
     })
     .catch(function (error) {
       console.error('Could not load data.json:', error);

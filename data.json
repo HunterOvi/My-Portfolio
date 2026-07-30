@@ -1,7 +1,6 @@
 {
   "site": {
     "name": "Mehedi Hasan Ovi",
-    "shortName": "OVI",
     "title": "Mehedi Hasan Ovi — Software Engineer",
     "description": "Portfolio of Mehedi Hasan Ovi, Software Engineering student at DIU building full-stack systems and embedded hardware.",
     "url": "https://mehedihasanovi.site/"
@@ -27,8 +26,25 @@
     ],
     "subtitle": "Passionate about building modern web, desktop, and embedded software while continuously learning and growing as a software engineer.",
     "resumeFile": "Mehedi_Hasan_Ovi_Resume.pdf",
+    "resumeLabel": "Resume",
+    "ctaLabel": "Get In Touch",
+    "scrollCue": "scroll ↓",
     "photo": "photo-hero.jpg",
     "photoAlt": "Portrait of Mehedi Hasan Ovi"
+  },
+
+  "sectionHeaders": {
+    "about": { "tag": "about", "heading": "About Me" },
+    "projects": {
+      "tag": "projects",
+      "heading": "Featured Projects",
+      "subtitle": "A selection of software engineering projects showcasing full-stack development, desktop applications, embedded systems, and system design.",
+      "note": "Note: These projects were developed through university coursework, team collaboration, and personal learning."
+    },
+    "skills": { "tag": "skills", "heading": "Technical Skills" },
+    "education": { "tag": "education", "heading": "Education" },
+    "news": { "tag": "updates", "heading": "Latest Updates" },
+    "contact": { "tag": "connect", "heading": "Get in touch" }
   },
 
   "about": {
@@ -49,6 +65,7 @@
 
   "contact": {
     "intro": "I'm currently seeking Software Engineering Internship opportunities. Whether you have an exciting project, internship opportunity, or simply want to connect, I'd be happy to hear from you.",
+    "ctaLabel": "Contact Me",
     "items": [
       { "icon": "mail", "label": "Email", "value": "ovi.mehedihasan@gmail.com", "href": "mailto:ovi.mehedihasan@gmail.com" },
       { "icon": "phone", "label": "Phone", "value": "+880 1516‑523375", "href": "tel:+8801516523375" },

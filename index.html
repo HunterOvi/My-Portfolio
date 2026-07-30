@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Mehedi Hasan Ovi — Software Engineer</title>
 <meta name="description" content="Portfolio of Mehedi Hasan Ovi, Software Engineering student at DIU building full-stack systems and embedded hardware." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="apple-touch-icon" href="logo.png" />
 <link rel="canonical" href="https://mehedihasanovi.site/" />
 
 <!-- Open Graph / rich link previews (WhatsApp, Facebook, LinkedIn, Discord, etc.) -->
@@ -42,7 +44,7 @@
   <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
-  <span class="mobile-bar-name">OVI</span>
+  <img class="mobile-bar-logo" src="logo.png" alt="Mehedi Hasan Ovi logo">
 </header>
 
 <!-- Dark overlay behind the drawer — page stays visible underneath -->
@@ -66,8 +68,8 @@
         <p class="hero-terminal mono" id="typedLine"></p>
         <p class="hero-sub" id="heroSub"></p>
         <div class="hero-cta">
-          <a href="#contact" class="btn btn-primary"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Get In Touch</a>
-          <a href="" id="heroResumeLink" class="btn btn-ghost" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>Resume</a>
+          <a href="#contact" class="btn btn-primary"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg><span id="heroCtaLabel"></span></a>
+          <a href="" id="heroResumeLink" class="btn btn-ghost" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg><span id="heroResumeLabel"></span></a>
         </div>
       </div>
       <div class="hero-portrait">
@@ -80,14 +82,14 @@
         </div>
       </div>
     </div>
-    <div class="scroll-cue mono" aria-hidden="true">scroll ↓</div>
+    <div class="scroll-cue mono" id="scrollCue" aria-hidden="true"></div>
   </section>
 
   <!-- ABOUT -->
   <section id="about" class="section">
     <div class="section-head">
-      <span class="tag mono">about</span>
-      <h2>About Me</h2>
+      <span class="tag mono" id="aboutTag"></span>
+      <h2 id="aboutHeading"></h2>
     </div>
     <div class="glass-panel about-panel">
       <div class="about-grid">
@@ -107,10 +109,10 @@
   <!-- PROJECTS -->
   <section id="projects" class="section">
     <div class="section-head">
-      <span class="tag mono">projects</span>
-      <h2>Featured Projects</h2>
-      <p class="section-sub">A selection of software engineering projects showcasing full-stack development, desktop applications, embedded systems, and system design.</p>
-      <p class="section-note mono">Note: These projects were developed through university coursework, team collaboration, and personal learning.</p>
+      <span class="tag mono" id="projectsTag"></span>
+      <h2 id="projectsHeading"></h2>
+      <p class="section-sub" id="projectsSubtitle"></p>
+      <p class="section-note mono" id="projectsNote"></p>
     </div>
     <div class="project-grid" id="projectGrid"></div>
   </section>
@@ -118,8 +120,8 @@
   <!-- SKILLS -->
   <section id="skills" class="section">
     <div class="section-head">
-      <span class="tag mono">skills</span>
-      <h2>Technical Skills</h2>
+      <span class="tag mono" id="skillsTag"></span>
+      <h2 id="skillsHeading"></h2>
     </div>
     <div class="skills-board" id="skillsBoard"></div>
   </section>
@@ -127,8 +129,8 @@
   <!-- EDUCATION -->
   <section id="education" class="section">
     <div class="section-head">
-      <span class="tag mono">education</span>
-      <h2>Education</h2>
+      <span class="tag mono" id="educationTag"></span>
+      <h2 id="educationHeading"></h2>
     </div>
     <div class="timeline" id="timeline"></div>
   </section>
@@ -136,8 +138,8 @@
   <!-- LATEST UPDATES -->
   <section id="news" class="section">
     <div class="section-head">
-      <span class="tag mono">updates</span>
-      <h2>Latest Updates</h2>
+      <span class="tag mono" id="newsTag"></span>
+      <h2 id="newsHeading"></h2>
     </div>
     <div class="news-feed" id="newsFeed"></div>
   </section>
@@ -145,14 +147,14 @@
   <!-- CONTACT -->
   <section id="contact" class="section contact-section">
     <div class="section-head">
-      <span class="tag mono">connect</span>
-      <h2>Get in touch</h2>
+      <span class="tag mono" id="contactTag"></span>
+      <h2 id="contactHeading"></h2>
     </div>
     <div class="glass-panel contact-panel">
       <p id="contactIntro"></p>
       <div class="contact-grid" id="contactGrid"></div>
       <div class="contact-cta">
-        <a href="" id="contactCta" class="btn btn-primary"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>Contact Me</a>
+        <a href="" id="contactCta" class="btn btn-primary"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span id="contactCtaLabel"></span></a>
       </div>
     </div>
   </section>

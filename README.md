@@ -70,7 +70,8 @@ A few notes:
 
 - **`site`**: the page `<title>` and meta description shown in browser tabs and link previews (these stay in `index.html`'s `<head>` too, since search engines and chat apps don't run JavaScript — keep both in sync if you change them). The `<head>` also sets `rel="canonical"` and the Open Graph/Twitter tags to `https://mehedihasanovi.site/` and `og-image.jpg` — update those too if the domain or preview image ever changes.
 - **`nav`**: the section links in the side rail and mobile menu. Each entry needs an `id` matching a section's `id` in `index.html`, and a `label`.
-- **`hero`**: `firstName`/`lastName`, the typewriter `typedLines` (array), the `subtitle`, `resumeFile` (must match the PDF's filename), and the `photo` file.
+- **`hero`**: `firstName`/`lastName`, the typewriter `typedLines` (array), the `subtitle`, `resumeFile` (must match the PDF's filename), the `photo` file, plus the two button labels (`ctaLabel`, `resumeLabel`) and the `scrollCue` text under the hero.
+- **`sectionHeaders`**: the small uppercase `tag` and the `<h2>` heading shown above every section (About, Projects, Skills, Education, Updates, Contact). Projects also has `subtitle` and `note` for its two lines of intro text.
 - **`about`**: `paragraphs` (array — basic `<strong>` tags are allowed), `competencies` (the small skill chips), and the `status` list (each item needs an `icon` key from `SECTION_ICONS` in `script.js`, plus `key`/`value`).
 - **Projects**: each project needs `title`, `subtitle`, `role`, `badge`, `stack` (array), `points` (array of 2–3 short bullets), `status` (`"active"` or `"complete"`), and a `github` link.
 - **Tech Stack**: grouped under `skillGroups`. Add a skill name to any group's `items` array and it appears automatically. If you add a brand-new skill that doesn't have a matching icon yet, it falls back to a generic icon — you can add a new one in the `SKILL_ICONS` object in `script.js`.

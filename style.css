@@ -252,11 +252,10 @@ a:focus-visible, button:focus-visible {
   }
 }
 
-.mobile-bar-name {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: var(--circuit-green);
+.mobile-bar-logo {
+  height: 28px;
+  width: auto;
+  display: block;
 }
 
 .mobile-menu-btn {
