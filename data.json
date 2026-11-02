@@ -57,7 +57,7 @@
     "status": [
       { "icon": "cap", "key": "Degree", "value": "B.Sc. in Software Engineering" },
       { "icon": "building", "key": "University", "value": "Daffodil International University" },
-      { "icon": "calendar", "key": "Semester", "value": "6th Semester" },
+      { "icon": "calendar", "key": "Semester", "value": "7th Semester" },
       { "icon": "pin", "key": "Location", "value": "Dhaka, Bangladesh" },
       { "icon": "briefcase", "key": "Current Project", "value": "Team Lead • PharmEx" }
     ]
